@@ -25,6 +25,7 @@ gulp.task('copy-unchanged-content', function(){
 			'src/bin/*', //Runtime files
 			'src/views/*', //Jade files
 			'src/routes/*', //Routes
+			'src/wsConnector/*', //Web Service Connector
 			'src/app.js' // Express App.js file
 		])
 	.pipe(copy(dest, {prefix : 1}))
