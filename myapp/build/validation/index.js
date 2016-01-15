@@ -8,6 +8,7 @@ ps_tooShort = 'Password needs to be at least 5 charachers',
 cps_noMatch = 'Passwords do not match',
 email_notValid = 'Email address is not valid',
 cemail_noMatch = 'Email addresses do not match',
+email_exist = 'Email already exists',
 firstName_req = 'First Name is required',
 lastName_req = 'Last Name is required';
 
@@ -114,6 +115,10 @@ var validatePostWS = function(data, cb){
 		//Check if emails match
 		else if(error.errorCode == 206){
 			respObj[ERROR_NS+CONFIRM_EMAIL_NS] =  cemail_noMatch;
+		}
+		//Check if Email already exists
+		else if(error.errorCode ==102){
+			respObj[ERROR_NS+EMAIL_NS] = email_exist;
 		}
 		//Check if firstName exists
 		else if(error.errorCode == 207){
