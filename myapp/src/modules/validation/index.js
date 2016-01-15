@@ -7,26 +7,30 @@ un_exists = 'Username already exists',
 ps_tooShort = 'Password needs to be at least 5 charachers',
 cps_noMatch = 'Passwords do not match',
 email_notValid = 'Email address is not valid',
-cemail_noMatch = 'Email addresses do not match';
+cemail_noMatch = 'Email addresses do not match',
+firstName_req = 'First Name is required',
+lastName_req = 'Last Name is required';
 
 var USERNAME_NS = 'username',
 EMAIL_NS = 'email',
 CONFIRM_EMAIL_NS =  'confirmEmail',
 PASS_NS = 'password',
 CONFIRM_PASS_NS = "confirmPassword",
+FIRSTNAME_NS = 'firstName',
+LASTNAME_NS = 'lastName',
+
 ERROR_NS= 'error_';
 
 
 
 var validatePreWS = function(req, cb){
 	var respObj = {};
-	var errorKey;
 	//Check userName length
 	var username = req[USERNAME_NS];
 	if(username && username.length < 5){
 		respObj[ERROR_NS + USERNAME_NS] =  un_shortLength;
 	}
-
+	// TODO: Check if valid email
 	//var email = req[EMAIL_NS];
 	//if(email.length < 5){
 	//	respObj.join{ERROR_NS+EMAIL_NS : }
@@ -35,28 +39,33 @@ var validatePreWS = function(req, cb){
 	//Check password length
 	var password = req[PASS_NS];
 	if(password && password.length < 5){
-		errorkey = ERROR_NS + PASS_NS;
-		//_.extend(respObj,{errorkey : ps_tooShort});
 		respObj[ERROR_NS + PASS_NS] =  ps_tooShort;
 	}
 
 	var confirmPassword = req[CONFIRM_PASS_NS];
 	if(confirmPassword && password !== confirmPassword){
-		//errorkey = ERROR_NS+CONFIRM_PASS_NS;
-		//_.extend(respObj,{ errorkey: cps_noMatch});
 		respObj[ERROR_NS+CONFIRM_PASS_NS] =  cps_noMatch;
 	}
 
+	var firstName = req[FIRSTNAME_NS];
+	if(firstName && firstName.length < 1){
+		respObj[ERROR_NS + FIRSTNAME_NS] = firstName_req;
+	}
+
+	var lastName = req[LASTNAME_NS];
+	if(lastName && lastName.length < 1){
+		respObj[ERROR_NS + LASTNAME_NS] = lastName_req;
+	}
+	/*
 	var returnFunction = function(response){
 		if(response && response.errorCount >0){
 			console.log("BODY 4", response);
 			respObj.error = response;
 		}
-
 		//return respObj;
 		cb(respObj);
 	};
-
+	*/
 	//var response = wsconnector.signUp(req, returnFunction);
 	//return wsconnector.signUp(req, returnFunction);
 	//console.log("BODY 5", response);
@@ -92,6 +101,14 @@ var validatePostWS = function(data, cb){
 		//Check if emails match
 		else if(error.errorCode == 206){
 			respObj[ERROR_NS+CONFIRM_EMAIL_NS] =  cemail_noMatch;
+		}
+		//Check if firstName exists
+		else if(error.errorCode == 207){
+			respObj[ERROR_NS + FIRSTNAME_NS] = firstName_req;
+		}
+		//Check if lastName exists
+		else if(error.errorCode == 208){
+			respObj[ERROR_NS+LASTNAME_NS] = lastName_req;
 		}
 	});
 

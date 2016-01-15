@@ -15,9 +15,7 @@ block content
 		div.form-group
 			input#confirmEmail(type="email", name="confirmEmail", required)
 			label(for="confirmEmail") Confirm Email
-				span.error= error_confirmEmail
-		br
-		br
+				span.error= error_confirmEmail	
 		div.form-group
 			input#password(type="password", name="password", required)
 			label(for="password") Password
@@ -26,4 +24,14 @@ block content
 			input#confirmPassword(type="password", name="confirmPassword", required)
 			label(for="confirmPassword") Confirm Password
 				span.error= error_confirmPassword
+		br
+		br
+		div.form-group
+			input#firstName(type="text", name="firstName")
+			label(for="firstName") First Name
+				span.error= error_firstName
+		div.form-group
+			input#lastName(type="text", name="lastName")
+			label(for="lastName") Last Name
+				span.error= error_lastName
 		input(type="submit")
