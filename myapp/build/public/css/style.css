@@ -1,8 +1,31 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; }
+
 body {
-  padding: 50px; }
-
-a {
-  color: #00B7FF; }
-
-div.row {
-  border: green 1px solid; }
+  background-color: #E9E9E9; }
+  body .box {
+    background-color: #FFF;
+    padding: .3em .3em;
+    border: solid #D8D8D8 1px;
+    box-shadow: 0.2em 0.2em 0.5em rgba(0, 0, 0, 0.1); }
+    body .box + .box {
+      margin-top: 1em; }
+  body .error {
+    color: red; }
+  body header nav {
+    background-color: #3942ff;
+    min-height: 50px; }
+    body header nav a span {
+      color: white;
+      font-size: 2em; }
+  body header p {
+    margin-top: 1em; }
+    body header p .firstName {
+      text-transform: capitalize; }
+  body main .description {
+    background-color: #D0D0D0;
+    padding: .5em; }
+    body main .description h2 {
+      margin-top: 0; }
+  body main h2 {
+    font-size: 1.5em; }

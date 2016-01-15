@@ -19,7 +19,7 @@
 10 error You can get their info via:
 10 error     npm owner ls myapp
 10 error There is likely additional logging output above.
-11 error System Linux 4.2.0-16-generic
+11 error System Linux 4.3.3-040303-generic
 12 error command "/home/davon/.nvm/v0.10.32/bin/node" "/home/davon/.nvm/v0.10.32/bin/npm" "start"
 13 error cwd /home/davon/git/frontend/node_express/myapp
 14 error node -v v0.10.32

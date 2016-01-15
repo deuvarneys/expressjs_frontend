@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	h1 Sign up
+
+	form(method="post")
+		div.form-group
+			input#username(required, name="username")
+			label(for="username") Username
+				span.error= error_username
+		div.form-group
+			input#email(type="email", name="email", required)
+			label(for="email") Email
+				span.error= error_email
+		div.form-group
+			input#confirmEmail(type="email", name="confirmEmail", required)
+			label(for="confirmEmail") Confirm Email
+				span.error= error_confirmEmail
+		br
+		br
+		div.form-group
+			input#password(type="password", name="password", required)
+			label(for="password") Password
+				span.error= error_password
+		div.form-group
+			input#confirmPassword(type="password", name="confirmPassword", required)
+			label(for="confirmPassword") Confirm Password
+				span.error= error_confirmPassword
+		input(type="submit")

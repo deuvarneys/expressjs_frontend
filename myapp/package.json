@@ -12,12 +12,15 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "request-json": "^0.5.5",
+    "serve-favicon": "~2.3.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-copy": "0.0.2",
     "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "^3.8.1",
     "gulp-sass": "^2.1.1",
     "gulp-uglifyjs": "^0.6.2",
     "jshint": "^2.9.1-rc2",

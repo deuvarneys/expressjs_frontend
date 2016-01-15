@@ -4,6 +4,7 @@ var jshint_stylish = require('jshint-stylish');
 var uglifyjs = require('gulp-uglifyjs');
 var copy = require('gulp-copy');
 var sass = require('gulp-sass');
+var livereload = require('gulp-livereload');
 
 var dest = 'build';
 
@@ -11,7 +12,7 @@ var dest = 'build';
 gulp.task('process-js', function() {
 	//ONly looking at one file
 	//Looks like concatenation
-  gulp.src([ 'src/public/js/*.js'])
+  gulp.src([ 'src/public/js/*.js', 'src/modules/**/*.js', 'src/service/**/*.js', 'src/routes/**/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter(jshint_stylish))
     //.pipe(uglifyjs())
@@ -25,10 +26,12 @@ gulp.task('copy-unchanged-content', function(){
 			'src/bin/*', //Runtime files
 			'src/views/*', //Jade files
 			'src/routes/*', //Routes
-			'src/wsConnector/*', //Web Service Connector
+			'src/service/*', //Web Service Connector
+			'src/modules/**/*', //Modules
 			'src/app.js' // Express App.js file
 		])
 	.pipe(copy(dest, {prefix : 1}))
+	.pipe(livereload({reloadPage : '/'}));
 });
 
 
@@ -36,12 +39,14 @@ gulp.task('copy-unchanged-content', function(){
 gulp.task('sass', function () {
   gulp.src('./src/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(dest));
+    .pipe(gulp.dest(dest))
+    .pipe(livereload({reloadPage : '/'}));
 });
 
-gulp.task('build',['process-js', 'copy-unchanged-content', 'sass'], function(){})
+gulp.task('build',['process-js', 'copy-unchanged-content', 'sass'], function(){});
 
 gulp.task('watch', function(){
+	livereload.listen();
 	gulp.watch('src/**/*', ['build']);
 });
 

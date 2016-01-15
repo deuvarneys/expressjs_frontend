@@ -2,17 +2,61 @@ extends layout
 
 block content
 	header
-		p Good Morning #{firstName} #{lastName}
+		nav
+			a(href="/")
+				span Home
+		div.container
+			div.welcome.row
+				div.col-xs-12
+					p Good Morning 
+						span.firstName= firstName
 
 	main
-		h1= title
-		p Welcome to Express
+		div.container
+			div.description
+				h2 About zMe:
+				span= description
+			
+			h1 Employment History
 
-		h2 Your Description
-		span= description
+			if positions
+				each position in positions
+					-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+					
+					//-hr
+					div.box
+						div.row
+							div.col-xs-4
+								h3 Position
+							div.col-xs-8
+								span= position.title
 
-		p
-			|Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum dictum leo, vitae consequat lacus vulputate eu. Phasellus ex leo, blandit in odio ac, egestas laoreet quam. Mauris tempus eget urna eu interdum. Vivamus iaculis sollicitudin erat, ac tempus dui iaculis vel. Vestibulum accumsan augue ut nunc vestibulum eleifend. Integer ut turpis sit amet tortor consequat hendrerit. Quisque gravida fringilla sapien, et iaculis nibh vestibulum id. Nulla in condimentum nibh, quis posuere quam. Nunc mattis laoreet orci, ac mattis justo porttitor sed. Duis ac justo nec dolor mollis malesuada. Proin diam odio, sodales at tempor ac, sodales sed lectus. Integer ac sem interdum, commodo mauris et, sodales eros. Nullam in neque turpis. Nam tristique malesuada felis, ac efficitur leo suscipit quis. Praesent at quam at nisi vestibulum mollis vitae sed est. Phasellus dignissim dapibus lectus.
+						div.row
+							div.col-xs-4
+								h4 Employer
+							div.col-xs-8
+								span= position.employer
+						div.row
+							div.col-xs-3
+								h4 Start Date
+							div.col-xs-3
+								- var startDate = new Date(position.startDate)
+								//-span= position.startDate
+								span= months[startDate.getMonth()]+ " " + startDate.getFullYear()
+							div.col-xs-3
+								h4 End Date
+							div.col-xs-3
+								- var endDate = new Date(position.endDate)
+								span= months[endDate.getMonth()] + " " + endDate.getFullYear()
+						div.row
+							div.col-xs-4
+								h4 Location
+							div.col-xs-8
+								span=position.location
+						
+
+						h4 Description
+						span= position.description
 	
 	footer
 		p Footer content goes here
