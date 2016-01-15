@@ -31,10 +31,20 @@ var validatePreWS = function(req, cb){
 		respObj[ERROR_NS + USERNAME_NS] =  un_shortLength;
 	}
 	// TODO: Check if valid email
-	//var email = req[EMAIL_NS];
+	var email = req[EMAIL_NS];
 	//if(email.length < 5){
 	//	respObj.join{ERROR_NS+EMAIL_NS : }
 	//}
+
+	var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)){
+    	respObj[ERROR_NS + EMAIL_NS] = email_notValid;
+    }
+
+    var cEmail = req[CONFIRM_EMAIL_NS];
+    if(email !== cEmail){
+    	respObj[ERROR_NS + CONFIRM_EMAIL_NS] = cemail_noMatch;
+    }
 
 	//Check password length
 	var password = req[PASS_NS];
@@ -95,9 +105,12 @@ var validatePostWS = function(data, cb){
 			respObj[ERROR_NS + PASS_NS] =  ps_tooShort;
 		}
 		//Check if passwords do not match
-		 else if(error.errorCode == 204){
+		else if(error.errorCode == 204){
 			respObj[ERROR_NS+CONFIRM_PASS_NS] =  cps_noMatch;
 		} 
+		else if(error.errorCode == 205){
+			respObj[ERROR_NS+EMAIL_NS] = email_notValid;
+		}
 		//Check if emails match
 		else if(error.errorCode == 206){
 			respObj[ERROR_NS+CONFIRM_EMAIL_NS] =  cemail_noMatch;

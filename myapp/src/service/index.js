@@ -13,7 +13,7 @@ var signUpService = function(req, cb){
 		//Make backend server call
 		wsconnector.signUp(req, function(wsObj){
 			console.log("Sign up service wsObj", wsObj);
-			if(Object.keys(wsObj).length){
+			if(wsObj && Object.keys(wsObj).length){
 				signupValidate.validatePostWS(wsObj, function(respObj2){
 					console.log("Sign up service respObj2", respObj2);
 					cb(respObj2);

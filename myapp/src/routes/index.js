@@ -28,9 +28,9 @@ router.post('/signup', function(req, res, next){
 
 	var cb = function(resp){
 		//if (typeof resp._locals !== "undefined"){
-			console.log("it is here", Object.keys(resp));
+			//console.log("it is here", Object.keys(resp));
 		//}
-		if(Object.keys(resp).length > 0){
+		if(resp && Object.keys(resp).length > 0){
 			res.render('signup', resp);
 			console.log("We got sign up errors!");
 		} else{
