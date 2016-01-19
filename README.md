@@ -1,6 +1,6 @@
 This is a working project for a nodeJs frontend application.
 
-To start the project, you will need to start up the server from https://github.com/deuvarneys/SpringRESTService along with a Mysql and MongoDb servers (I recommend using Docker). 
+To start the project, you will need to start up the server from https://github.com/deuvarneys/SpringRESTService along with a Mysql and MongoDb servers (I recommend using Docker. In a future commit, I will incorporate these servers in docker/docker-composer so user will only have to run one command). 
 
 Start application
 $ cd myapp
