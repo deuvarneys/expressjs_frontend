@@ -1,63 +1,80 @@
-extends layout
+extends _partials/layout
 
 block content
-	header
-		nav
-			a(href="/")
-				span Home
-		div.container
-			div.welcome.row
-				div.col-xs-12
-					p Good Morning 
-						span.firstName= firstName
+	div#home
+		header
+			nav
+				a(href="/")
+					span Home
+			div.container
+				div.welcome.row
+					div.col-xs-12
+						p Good Morning 
+							span.firstName= firstName
 
-	main
-		div.container
-			div.description
-				h2 About zMe:
-				span= description
-			
-			h1 Employment History
+		main
+			div.container
+				div.description
+					h2 About Me:
+					p= description
+				
+				h1 Employment History
+				div#history
+					if positions
+						each position in positions
+							//-hr
+							
+							div.box.position(data-positionid=position.id)
+								div.row
+									div.col-xs-4
+										h4 Title
+									div.col-xs-8
+										p= position.title
+										//-p Senior Software Engineer
 
-			if positions
-				each position in positions
-					-var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-					
-					//-hr
-					div.box
-						div.row
-							div.col-xs-4
-								h3 Position
-							div.col-xs-8
-								span= position.title
+								div.row
+									div.col-xs-4
+										h4 Employer
+									div.col-xs-8
+										p= position.employer
+										//-p AOL
 
-						div.row
-							div.col-xs-4
-								h4 Employer
-							div.col-xs-8
-								span= position.employer
-						div.row
-							div.col-xs-3
-								h4 Start Date
-							div.col-xs-3
-								- var startDate = new Date(position.startDate)
-								//-span= position.startDate
-								span= months[startDate.getMonth()]+ " " + startDate.getFullYear()
-							div.col-xs-3
-								h4 End Date
-							div.col-xs-3
-								- var endDate = new Date(position.endDate)
-								span= months[endDate.getMonth()] + " " + endDate.getFullYear()
-						div.row
-							div.col-xs-4
-								h4 Location
-							div.col-xs-8
-								span=position.location
-						
+								div.row
+									div.col-xs-3
+										h4 Start Date
+									div.col-xs-3
+										//-- var startDate = new Date(position.startDate)
+										//-span= position.startDate
+										//-p= months[startDate.getMonth()]+ " " + startDate.getFullYear()
+										p.date= position.startMonth + " " + position.startYear
+									div.col-xs-3
+										h4 End Date
+									div.col-xs-3
+										//-- var endDate = new Date(position.endDate)
+										//-span= months[endDate.getMonth()] + " " + endDate.getFullYear()
+										p.date= position.endMonth + " " + position.endYear
+								div.row
+									div.col-xs-4
+										h4 Location
+									div.col-xs-8
+										p=position.location
+										//-p Sterling, Virginia
+								
 
-						h4 Description
-						span= position.description
-	
-	footer
-		p Footer content goes here
-	
+								h4 Description
+								p= position.description
+								//-p This is a really bad description
+								
+								button.btn.btn-default.btn-sm.deletePosition(type="button")
+									span.glyphicon.glyphicon-trash
+
+					div.addPosition.box
+						//-img(src='https://placehold.it/25x25')
+						span.glyphicon.glyphicon-plus
+						p Add New Position
+
+		
+		footer
+			p Footer content goes here
+		
+		script(type='text/javascript', src='js/home.js')

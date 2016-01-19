@@ -12,11 +12,13 @@ var dest = 'build';
 gulp.task('process-js', function() {
 	//ONly looking at one file
 	//Looks like concatenation
-  gulp.src([ 'src/public/js/*.js', 'src/modules/**/*.js', 'src/service/**/*.js', 'src/routes/**/*.js'])
+  //gulp.src([ 'src/public/js/*.js', 'src/modules/**/*.js', 'src/service/**/*.js', 'src/routes/**/*.js'])
+    gulp.src([ 'src/public/js/*.js'])
     .pipe(jshint())
     .pipe(jshint.reporter(jshint_stylish))
     //.pipe(uglifyjs())
-    .pipe(gulp.dest(dest));
+    .pipe(copy(dest, {prefix : 1}))
+    //.pipe(gulp.dest(dest));
 });
 
 //Working
@@ -24,9 +26,9 @@ gulp.task('copy-unchanged-content', function(){
 	gulp.src([
 			'src/public/images/*', //Public Images
 			'src/bin/*', //Runtime files
-			'src/views/*', //Jade files
+			'src/views/**/*', //Jade files
 			'src/routes/*', //Routes
-			'src/service/*', //Web Service Connector
+			'src/service/**/*', //Web Service Connector
 			'src/modules/**/*', //Modules
 			'src/app.js' // Express App.js file
 		])

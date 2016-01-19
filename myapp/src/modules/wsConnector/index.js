@@ -4,11 +4,10 @@ requestJson = require('request-json');
 var options = {
   host: 'localhost',
   port: '8080',
-  path: '/profile/sanderson3'//,
+  path: '/profile/deuvarney15'//,
   //method: 'GET'//,
   //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 };
-
 
 // write the request parameters
 //req.write('post=data&is=specified&like=this');
@@ -28,7 +27,6 @@ var getSandersonContent = function(cb){
 	  });
 	};
 
-
 	var req = http.request(options, callback);
 	req.end();
 };
@@ -47,9 +45,6 @@ var getSignUpContent = function(data, cb){
 	  });
 	};
 
-	
-
-
 	var req = http.request(options, callback);
 	req.end();   
 	*/
@@ -64,7 +59,6 @@ var getSignUpContent = function(data, cb){
       },
       json : true,
 	  data: data
-	  //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 	};
 
 	var client = requestJson.createClient('http://localhost:8080/');

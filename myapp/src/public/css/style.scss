@@ -5,7 +5,7 @@ h1,h2,h3,h4,h5,h6{
 body {
   //padding: 50px;
   //font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: #E9E9E9;
+  background-color: #F5F5F5;
 
   .box{
   	background-color: #FFF;
@@ -24,43 +24,67 @@ body {
 
   	
   
+  #home{
 
-  header{
-  	nav{
-	    background-color: rgb(57,66,255);
-		min-height: 50px;
+    header{
+      nav{
+        background-color: rgb(57,66,255);
+      min-height: 50px;
 
-		a span{
-			color: white;
-			font-size: 2em;
-		}	
-  	}
+      a span{
+        color: white;
+        font-size: 2em;
+      } 
+      }
 
 
-  	p{
-  		margin-top: 1em;
+      p{
+        margin-top: 1em;
 
-  		.firstName{
-    			text-transform: capitalize;
-    		}
-  	}
-  }
+        .firstName{
+            text-transform: capitalize;
+          }
+      }
+    }
 
-  main{
-  	.description{
-  		background-color: #D0D0D0;
-  		padding : .5em;
+    main{
+      .description{
+        background-color: #D0D0D0;
+        padding : .5em;
 
-  		h2{
-  			margin-top : 0;
-  		}
-  		
-  	}
-	h2{
+        h2{
+          margin-top : 0;
+        }
+        
+      }
 
-		font-size: 1.5em;
-	}
+      .position{
+        p.date{
+          text-transform: capitalize;
+        }
+      }
 
-  }
+      .addPosition{
+        cursor: pointer;
+        span{
+          float : left;
+        }
+        p{
+          padding-left: 5%;
+        }
+      }
+
+
+
+      h2{
+
+        font-size: 1.5em;
+      }
+
+    }
+
+
+    }
+  
 }
 
