@@ -44,5 +44,11 @@ router.post('/signup', function(req, res, next){
 
 });
 
+router.get('/positionHtml', function(req, res, next){
+	console.log("REQ: ", req.query);
+	res.render('_includes/position', {position : req.query});
+});
+
+
 
 module.exports = router;

@@ -23,7 +23,8 @@
 
 	//On Save Position Clicked
 	$('#history').on('click', '.savePosition', function(){
-		var values = $(this).closest('.addPosition').find('[name]');
+		var addPositionElement = $(this).closest('.addPosition');
+		var values = addPositionElement.find('[name]');
 		//console.log(values);
 		var map = {};
 		$.each(values, function(key,value){
@@ -53,10 +54,21 @@
    			dataType : 'json',
    			success : function(data2){
 				console.log('Data', data2);
+
+				$.get('/positionHtml', data2,function(html){
+					console.log("Html", html);
+					$("#history").prepend(html);
+					addPositionElement.remove();
+					//addPositionHtml = html;
+					//addPosition();
+				});
+
 			}
 		});
 
 	});
+
+
 	//On Cancel  clicked
 	$('#history').on('click', '.cancelPosition', function(){
 		//console.log('cancelCLicked');

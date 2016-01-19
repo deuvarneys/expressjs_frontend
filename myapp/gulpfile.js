@@ -14,11 +14,17 @@ gulp.task('process-js', function() {
 	//Looks like concatenation
   //gulp.src([ 'src/public/js/*.js', 'src/modules/**/*.js', 'src/service/**/*.js', 'src/routes/**/*.js'])
     gulp.src([ 'src/public/js/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter(jshint_stylish))
+    //.pipe(jshint())
+    //.pipe(jshint.reporter(jshint_stylish))
     //.pipe(uglifyjs())
     .pipe(copy(dest, {prefix : 1}))
     //.pipe(gulp.dest(dest));
+});
+
+gulp.task('lint-js', function(){
+	gulp.src(['src/**/*.js'])
+	.pipe(jshint())
+    .pipe(jshint.reporter(jshint_stylish))
 });
 
 //Working
@@ -32,8 +38,8 @@ gulp.task('copy-unchanged-content', function(){
 			'src/modules/**/*', //Modules
 			'src/app.js' // Express App.js file
 		])
-	.pipe(copy(dest, {prefix : 1}))
-	.pipe(livereload({reloadPage : '/'}));
+	.pipe(copy(dest, {prefix : 1}));
+	//.pipe(livereload({reloadPage : '/'}));
 });
 
 
@@ -45,7 +51,7 @@ gulp.task('sass', function () {
     .pipe(livereload({reloadPage : '/'}));
 });
 
-gulp.task('build',['process-js', 'copy-unchanged-content', 'sass'], function(){});
+gulp.task('build',['lint-js','process-js', 'copy-unchanged-content', 'sass'], function(){});
 
 gulp.task('watch', function(){
 	livereload.listen();

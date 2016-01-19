@@ -1,0 +1,45 @@
+div.box.position(data-positionid=position.id)
+	div.row
+		div.col-xs-4
+			h4 Title
+		div.col-xs-8
+			p= position.title
+			//-p Senior Software Engineer
+
+	div.row
+		div.col-xs-4
+			h4 Employer
+		div.col-xs-8
+			p= position.employer
+			//-p AOL
+
+	div.row
+		div.col-xs-3
+			h4 Start Date
+		div.col-xs-3
+			//-- var startDate = new Date(position.startDate)
+			//-span= position.startDate
+			//-p= months[startDate.getMonth()]+ " " + startDate.getFullYear()
+			p.date= position.startMonth + " " + position.startYear
+		div.col-xs-3
+			h4 End Date
+		div.col-xs-3
+			//-- var endDate = new Date(position.endDate)
+			//-span= months[endDate.getMonth()] + " " + endDate.getFullYear()
+			p.date= position.endMonth + " " + position.endYear
+	div.row
+		div.col-xs-4
+			h4 Location
+		div.col-xs-8
+			p=position.location
+			//-p Sterling, Virginia
+	
+
+	h4 Description
+	p= position.description
+	//-p This is a really bad description
+	
+	button.btn.btn-default.btn-sm.deletePosition(type="button")
+		span.glyphicon.glyphicon-trash
+	button.btn.btn-default.btn-sm.editPosition(type="button")
+		span.glyphicon.glyphicon-pencil
