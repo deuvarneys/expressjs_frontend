@@ -1,0 +1,67 @@
+
+
+
+div.box(class= typeof id !== undefined ? "editPosition" : "addPosition", data-id= id !== undefined ? id : "")
+	div.row
+		div.col-xs-4
+			h4 Title
+		div.col-xs-8
+			input(placeHolder='Your Position' name='title' value=title)
+
+	div.row
+		div.col-xs-4
+			h4 Employer
+
+		div.col-xs-8
+			input(placeHolder='Your Company' name='employer' value= employer)
+
+		
+
+	div.row
+		div.col-xs-3
+			- var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+			h4 Start Date
+
+		div.col-xs-3
+			select(name='startMonth')
+				each month in months
+					if startMonth && startMonth === month.toLowerCase()
+						option(value=month.toLowerCase(), selected) #{month}
+					else
+						option(value=month.toLowerCase()) #{month}
+			
+
+				input(type='number' name='startYear' min='1950' max='2016' placeHolder='Year', value=startYear)
+		
+		div.col-xs-3
+			h4 End Date
+
+		div.col-xs-3
+			select(name='endMonth')
+				each month in months
+					if endMonth && endMonth === month.toLowerCase()
+						option(value=month.toLowerCase(), selected) #{month}
+					else
+						option(value=month.toLowerCase()) #{month}
+					
+				input(type='number' name='endYear' min='1950' max='2016' placeHolder='Year', value=endYear)
+
+	div.row
+		div.col-xs-4
+			h4 Location
+
+		div.col-xs-8
+			input(name='location' placeHolder='City,State', value=location)
+
+	
+	h4 Description
+
+	textarea(name='description' placeHolder='Tell us about your position') #{description}
+	br
+	if id
+		button.updatePosition.btn.btn-success Update
+		
+	else
+		button.savePosition.btn.btn-success Save
+		//-button.cancelPosition.btn.btn-default Cancel
+	button.cancelPosition.btn.btn-default Cancel
