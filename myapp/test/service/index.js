@@ -3,7 +3,6 @@ should = require('chai').should(),
 expect = require('chai').expect,
 service = require('../../src/service'),
 _ = require('underscore'),
-sinon = require('sinon'),
 wsConnector = require('../../src/modules/wsConnector');
 
 var validObject = {

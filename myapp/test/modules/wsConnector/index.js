@@ -1,6 +1,5 @@
 var mocha = require('mocha'),
-expect = require('chai').expect,
-sinon = require('sinon');
+expect = require('chai').expect;
 
 var wsConnector = require('../../../src/modules/wsConnector');
 
