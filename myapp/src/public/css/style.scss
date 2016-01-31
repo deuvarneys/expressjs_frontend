@@ -28,13 +28,21 @@ body {
 
     header{
       nav{
-        background-color: rgb(57,66,255);
+       /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,2989d8+96,7db9e8+100 */
+      background: #1e5799; /* Old browsers */
+      /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+      background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzFlNTc5OSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk2JSIgc3RvcC1jb2xvcj0iIzI5ODlkOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM3ZGI5ZTgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+      background: -moz-linear-gradient(top,  #1e5799 0%, #2989d8 96%, #7db9e8 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top,  #1e5799 0%,#2989d8 96%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom,  #1e5799 0%,#2989d8 96%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-8 */
+
       min-height: 50px;
 
-      a span{
-        color: white;
-        font-size: 2em;
-      } 
+        a span{
+          color: white;
+          font-size: 2em;
+        } 
       }
 
 
@@ -59,12 +67,46 @@ body {
       }
 
       .position{
-        p.date{
-          text-transform: capitalize;
+
+        &:hover button{
+          //visibility: visible;
+          opacity: .5;
+
+        }
+        h4{
+          font-weight: bold;
+          font-size : .9em;
+        }
+
+        pre{
+          background-color: #FBFBFB;
+          font-family: arial;
+          font-size: 1.1em;
+        }
+
+        p{
+          font-size : 1.2em;
+          
+          &.date{
+             text-transform: capitalize;
+          }
+        }
+
+        button{
+          
+
+          opacity : 0;
+          transition:opacity .3s linear;
+          &:hover{
+            opacity: 1;
+          }
+          + button {
+            margin-left : 1%;
+          }
         }
       }
 
-      .addPosition{
+      .addPosition,.editPosition{
         cursor: pointer;
         span{
           float : left;
@@ -72,6 +114,14 @@ body {
         p{
           padding-left: 5%;
         }
+        .row{
+          margin-bottom: .5em;
+        }
+
+        button + button {
+          margin-left : 1%;
+        }
+
       }
 
 

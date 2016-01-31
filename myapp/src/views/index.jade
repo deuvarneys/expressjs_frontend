@@ -4,8 +4,9 @@ block content
 	div#home
 		header
 			nav
-				a(href="/")
-					span Home
+				div.container
+					a(href="/")
+						span Home
 			div.container
 				div.welcome.row
 					div.col-xs-12
@@ -14,11 +15,11 @@ block content
 
 		main
 			div.container
-				div.description
+				div.description.box.no-fill
 					h2 About Me:
 					p= description
-				
-				h1 Employment History
+				div.box
+					h1 Employment History
 				div#history
 					if positions
 						each position in positions

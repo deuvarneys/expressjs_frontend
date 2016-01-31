@@ -28,16 +28,6 @@
 		$.each(values, function(key,value){
 			map[$(value).attr('name')] = $(value).val();
 		});
-		//console.log('map', map);
-		/*
-		$.post("http://localhost:8080/profile/deuvarney15/addPosition", 
-			JSON.stringify(map),
-			function(data){
-				console.log('Data', data);
-			},
-			'json'
-			);
-		*/
 		
 		$.ajax({
 			url : 'http://localhost:8080/profile/deuvarney15/position',
@@ -73,11 +63,6 @@
 
 		editPosition.next().slideDown();
 		editPosition.remove();
-
-		
-		//If User selects cancel
-			//Remove Add/Edit Html Markup from page
-			//Show Hidden Position Markup on the page again
 	});
 
 	//On Removed Clicked
@@ -98,7 +83,6 @@
 				position.remove();
 			}
 		});
-
 	});
 
 	// On Position -> Edit position clicked
@@ -109,20 +93,6 @@
 		//Copy positionId
 		var positionId = position.data('positionid');
 
-		//var values = position.find('[name]');
-		/*var map = {};
-		$.each(values, function(key,value){
-			map[$(value).attr('name')] = $(value).val();
-		});
-		console.log("names:", map);
-		*/
-		//Get Add/Edit Position Html
-
-
-		//IF User updates values
-			//Send request to get updated values from WS
-			//Pass retrieved data to addEditPosition call
-			//Hide position and show add/edit Position HTML
 		$.ajax({
 			url : 'http://localhost:8080/profile/deuvarney15/position',
 			type : 'GET', 
@@ -149,11 +119,7 @@
 			}
 		});
 
-
-		//
-		
-
-		//On (Eit Position) update  clicked
+		//On (Edit Position) update  clicked
 	$('#history').on('click', '.editPosition .updatePosition', function(){
 		console.log( "we are here");
 		window.x = $(this);
@@ -189,32 +155,8 @@
 				});
 			}
 		});
-
-
-
-
-
-		
-		
-
-		
-		
 	});	
-			/*
-		$.ajax({
-			url : 'http://localhost:8080/profile/deuvarney15/position',
-			type : 'UPDATE', 
-			headers: { 
-		        'Accept': 'application/json',
-		        'Content-Type': 'application/json' 
-   			},
-   			data : positionId,
-   			dataType : 'json',
-   			success : function(data2){
-				console.log('Delete Data', data2);
-				position.remove();
-			}
-		});*/
+		
 
 	});
 

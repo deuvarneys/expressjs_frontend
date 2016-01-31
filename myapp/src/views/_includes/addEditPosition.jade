@@ -1,29 +1,29 @@
 
 
 
-div.box(class= typeof id !== undefined ? "editPosition" : "addPosition", data-id= id !== undefined ? id : "")
+div.box(class= typeof id !== "undefined" ? "editPosition" : "addPosition", data-id= id !== undefined ? id : "")
 	div.row
-		div.col-xs-4
+		div.col-xs-4.col-sm-3.col-md-2
 			h4 Title
-		div.col-xs-8
-			input(placeHolder='Your Position' name='title' value=title)
+		div.col-xs-8.col-sm-6.col-md-4
+			input.form-control(placeHolder='Your Position' name='title' value=title)
 
 	div.row
-		div.col-xs-4
+		div.col-xs-4.col-sm-3.col-md-2
 			h4 Employer
 
-		div.col-xs-8
-			input(placeHolder='Your Company' name='employer' value= employer)
+		div.col-xs-8.col-sm-6.col-md-4
+			input.form-control(placeHolder='Your Company' name='employer' value= employer)
 
 		
 
 	div.row
-		div.col-xs-3
+		div.col-xs-2
 			- var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 			h4 Start Date
 
-		div.col-xs-3
-			select(name='startMonth')
+		div.col-xs-4.col-sm-3.col-md-2
+			select.form-control(name='startMonth')
 				each month in months
 					if startMonth && startMonth === month.toLowerCase()
 						option(value=month.toLowerCase(), selected) #{month}
@@ -31,32 +31,32 @@ div.box(class= typeof id !== undefined ? "editPosition" : "addPosition", data-id
 						option(value=month.toLowerCase()) #{month}
 			
 
-				input(type='number' name='startYear' min='1950' max='2016' placeHolder='Year', value=startYear)
+				input.form-control(type='number' name='startYear' min='1950' max='2016' placeHolder='Year', value=startYear)
 		
-		div.col-xs-3
+		div.col-xs-2
 			h4 End Date
 
-		div.col-xs-3
-			select(name='endMonth')
+		div.col-xs-4.col-sm-3.col-md-2
+			select.form-control(name='endMonth')
 				each month in months
 					if endMonth && endMonth === month.toLowerCase()
 						option(value=month.toLowerCase(), selected) #{month}
 					else
 						option(value=month.toLowerCase()) #{month}
 					
-				input(type='number' name='endYear' min='1950' max='2016' placeHolder='Year', value=endYear)
+				input.form-control(type='number' name='endYear' min='1950' max='2016' placeHolder='Year', value=endYear)
 
 	div.row
-		div.col-xs-4
+		div.col-xs-4.col-sm-3.col-md-2
 			h4 Location
 
-		div.col-xs-8
-			input(name='location' placeHolder='City,State', value=location)
+		div.col-xs-8.col-sm-6.col-md-4
+			input.form-control(name='location' placeHolder='City,State', value=location)
 
 	
 	h4 Description
 
-	textarea(name='description' placeHolder='Tell us about your position') #{description}
+	textarea.form-control(name='description' placeHolder='Tell us about your position', rows='10') #{description}
 	br
 	if id
 		button.updatePosition.btn.btn-success Update

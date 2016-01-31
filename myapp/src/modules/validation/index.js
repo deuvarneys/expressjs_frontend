@@ -59,12 +59,12 @@ var validatePreWS = function(req, cb){
 	}
 
 	var firstName = req[FIRSTNAME_NS];
-	if(firstName && firstName.length < 1){
+	if(firstName && firstName.length < 2){
 		respObj[ERROR_NS + FIRSTNAME_NS] = firstName_req;
 	}
 
 	var lastName = req[LASTNAME_NS];
-	if(lastName && lastName.length < 1){
+	if(lastName && lastName.length < 2){
 		respObj[ERROR_NS + LASTNAME_NS] = lastName_req;
 	}
 	/*
@@ -85,7 +85,7 @@ var validatePreWS = function(req, cb){
 };
 
 var validatePostWS = function(data, cb){
-	console.log('errors:', data.errors);
+	//console.log('errors:', data.errors);
 	var respObj = {};
 
 	_.each(data.errors, function(error){

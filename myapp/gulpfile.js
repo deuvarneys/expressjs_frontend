@@ -1,10 +1,12 @@
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var jshint_stylish = require('jshint-stylish');
-var uglifyjs = require('gulp-uglifyjs');
-var copy = require('gulp-copy');
-var sass = require('gulp-sass');
-var livereload = require('gulp-livereload');
+var gulp = require('gulp'),
+jshint = require('gulp-jshint'),
+jshint_stylish = require('jshint-stylish'),
+uglifyjs = require('gulp-uglifyjs'),
+copy = require('gulp-copy'),
+sass = require('gulp-sass'),
+livereload = require('gulp-livereload'),
+istanbul = require('gulp-istanbul'),
+mocha = require('gulp-mocha');
 
 var dest = 'build';
 
@@ -51,6 +53,40 @@ gulp.task('sass', function () {
     .pipe(livereload({reloadPage : '/'}));
 });
 
+gulp.task('coverage', function () {
+  return gulp.src(['src/**/*.js'])
+    // Covering files
+    .pipe(istanbul({includeUntested : true}))
+    // Force `require` to return covered files
+    .pipe(istanbul.hookRequire());
+});
+
+gulp.task('unit-test', ['coverage'], function () {
+  return gulp.src(['test/**/*.js'])
+    .pipe(mocha({
+            "reporter": "mocha-jenkins-reporter",
+            "reporterOptions": {
+                "junit_report_name": "Unit_Test_Results",
+                "junit_report_path": "unit_tests/report.xml",
+                "junit_report_stack": 1
+            }
+        }))
+    
+    // Creating the reports after tests ran
+    .pipe(istanbul.writeReports());
+    // Enforce a coverage of at least 90%
+    //.pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
+});
+
+gulp.task('mocha',function() {
+    return gulp.src('test/**/*.js', {read: false})
+        // gulp-mocha needs filepaths so you can't have any plugins before it
+        .pipe(mocha({reporter: 'xunit'}))
+        .on("error", function(err){
+        	console.log("ERROR:", err.toString());
+        });
+});
+
 gulp.task('build',['lint-js','process-js', 'copy-unchanged-content', 'sass'], function(){});
 
 gulp.task('watch', function(){
@@ -58,6 +94,14 @@ gulp.task('watch', function(){
 	gulp.watch('src/**/*', ['build']);
 });
 
+gulp.task('coverage-watch', function(){
+	livereload.listen();
+	gulp.watch('src/**/*', ['unit-test', 'build']);
+});
+
 gulp.task('default',['build','watch'], function() {
   // place code for your default task here
+});
+
+gulp.task('build-dev', ['unit-test', 'build'], function(){
 });

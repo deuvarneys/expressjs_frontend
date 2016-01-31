@@ -69,7 +69,7 @@ var getSignUpContent = function(data, cb){
 		console.log(/*"Err: ", err, "Res: ", res,*/ "Body:", body);
 
 		if(cb){
-			console.log("Hitting cb!");
+			console.log("Hitting cb!", body);
 			return cb(body);
 		}
 		
