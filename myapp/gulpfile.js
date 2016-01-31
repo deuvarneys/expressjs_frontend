@@ -66,14 +66,18 @@ gulp.task('unit-test', ['coverage'], function () {
     .pipe(mocha({
             "reporter": "mocha-jenkins-reporter",
             "reporterOptions": {
-                "junit_report_name": "Unit_Test_Results",
-                "junit_report_path": "unit_tests/report.xml",
+                "junit_report_name": "unitTestResults",
+                "junit_report_path": "unit_test/report.xml",
                 "junit_report_stack": 1
             }
         }))
     
     // Creating the reports after tests ran
-    .pipe(istanbul.writeReports());
+    .pipe(istanbul.writeReports({
+	  reporters: [ 'lcov', 'json', 'text', 'text-summary', 'cobertura' ]
+	  //reportOpts: { dir: './coverage' }
+	}));
+	//.pipe(istanbul.writeReports());
     // Enforce a coverage of at least 90%
     //.pipe(istanbul.enforceThresholds({ thresholds: { global: 90 } }));
 });
