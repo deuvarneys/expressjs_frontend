@@ -1,0 +1,128 @@
+extends _partials/layout
+
+block content
+	script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js")
+	script(src="js/signup.js")
+	link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css')
+	div#signUp2.container(data-ng-app="myApp", data-ng-controller="UserNameController")
+		h1 Lets Get You Started
+		form.form-inline
+			fieldset.jumbotron.container
+				//-ng-include(src='"partials/signup/username.html"')
+				div.section
+					div.col-sm-7
+						div.subSection
+							p Pick a user name the best suits you
+							div.input-group.form-group.has-feedback(ng-class='unInputClass')
+								input.input-lg.form-control(type='text', name='userName', placeholder='Desired Username', ng-model='userName', value='{{userName}}', ng-keyup='unKeyUp()')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
+								button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
+					div.requirements.col-sm-5
+						p Requirements:
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='charLength()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!charLength()')
+							|UserName must be at least 5 characters long
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='noSpaces()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!noSpaces()')
+							|No spaces
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='!unExists')
+							span.glyphicon.glyphicon-remove.error(ng-show='unExists')
+							|UserName should not already exist
+
+				div.section
+					div.col-sm-7
+						div.subSection
+							p What is your preferred email address?
+							div.input-group.form-group.has-success.has-feedback
+								span.input-group-addon @
+								input.input-lg.form-control(type='email', name='email', ng-keyup='emailKeyUp()', ng-model='email', placeholder='Preffered Email')
+								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+						div.subSection
+							p Let's confirm your email address to make sure everything is correct
+
+							div.input-group.form-group.has-success.has-feedback.row
+								span.input-group-addon @
+								input.input-lg.form-control(type='email', name='confirmEmail', ng-model='confirmEmail', ng-keyup='confirmEmailKeyUp()', placeholder='Confirm Email')
+								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+							button.btn.btn-lg(ng-click='previous()') <- Previous
+							button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
+
+
+					div.requirements.col-sm-5
+						p Requirements:
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='emailCorrectFormat()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!emailCorrectFormat()')
+							|Email Must Be In correct format
+							br
+							sub john@doe.com
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='!emailExists')
+							span.glyphicon.glyphicon-remove.error(ng-show='emailExists')
+							|Email must not already exist on site
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='emailsMatch()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!emailsMatch()')
+							|Email must match confirmation
+
+				div.section
+					div.col-sm-7
+						div.subSection
+							p Lets pick a password to secure your account
+							div.input-group.form-group.has-feedback(ng-class='unInputClass')
+								input.input-lg.form-control(type='password', name='password', placeholder='Desired Password', ng-model='password', value='{{passowrd}}')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
+								
+						div.subSection
+							p Let's make sure that your entered the right password
+							div.input-group.form-group.has-feedback(ng-class='unInputClass')
+								input.input-lg.form-control(type='password', name='confirmPassword', placeholder='Confirm Password', ng-model='confirmPassword', value='{{confirmPassword}}')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
+							button.btn.btn-lg(ng-click='previous()') <- Previous
+							button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
+					div.requirements.col-sm-5
+						p Requirements:
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='emailCorrectFormat()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!emailCorrectFormat()')
+							|Email Must Be In correct format
+							br
+							sub john@doe.com
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='!emailExists')
+							span.glyphicon.glyphicon-remove.error(ng-show='emailExists')
+							|Email must not already exist on site
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='emailsMatch()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!emailsMatch()')
+							|Email must match confirmation
+
+				div.section
+					div.col-sm-7
+						div.subSection
+							p For your profile, what is your first name?
+							div.input-group.form-group.has-feedback(ng-class='firstNameStatus')
+								input.input-lg.form-control(type='text', name='firstName', placeholder='FirstName', ng-model='firstName', value='{{firstName}}', ng-keyup='firstNameKeyUp()')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='firstNameKeyUp()')
+								
+						div.subSection
+							p Let's finish off with your last name
+							div.input-group.form-group.has-feedback(ng-class='lastNameStatus')
+								input.input-lg.form-control(type='text', name='lastName', placeholder='LastName', ng-model='lastName', value='{{lastName}}', ng-keyup='lastNameKeyUp()')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='lastNameKeyUp()')
+							button.btn.btn-lg(ng-click='previous()') <- Previous
+							button.btn.btn-lg(ng-click='submit()', ng-disabled='!legalNameCheck()') Sign Up!
+					div.requirements.col-sm-5
+						p Requirements:
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='firstNameKeyUp()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!firstNameKeyUp()')
+							|First name should be present
+						p
+							span.glyphicon.glyphicon-ok.success(ng-show='lastNameKeyUp()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!lastNameKeyUp()')
+							|Last name should be present
+						

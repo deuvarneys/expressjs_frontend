@@ -17,10 +17,12 @@ body {
   		margin-top : 1em;
   	}
   }
-  
+  .success{
+    color : green;
+  }
   .error{
-  		color : red;
-  	}
+  	color : red;
+  }
 
   	
   
@@ -136,5 +138,37 @@ body {
 
     }
   
+  #signUp2{
+    text-align: center;
+    
+    h1{
+      margin: 5% 0;
+    }
+
+    fieldset{
+      box-shadow: .2em .2em .5em rgba(0,0,0,0.1);
+      button{
+        margin-top: 5%;
+      }
+
+      .section{
+        display: none;
+
+        .subSection + .subSection{
+          margin-top : 10%;
+        }
+      }
+
+      .requirements{
+        text-align: left;
+        p + p{
+          font-size: .95em;
+        }
+        span.glyphicon{
+          margin-right: 2%;
+        }
+      }
+    }
+ }
 }
 

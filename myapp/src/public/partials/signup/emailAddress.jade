@@ -1,0 +1,13 @@
+div.controller.animated.bounceInRight( data-ng-controller="EmailController")
+	div.col-sm-7
+		p What is your preferred email address?
+		div.input-group.form-group.has-success.has-feedback
+			span.input-group-addon @
+			input.input-lg.form-control(type='text', name='email', placeholder='Desired Username')
+			span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+
+		p Let's confirm your email address to make sure everything is correct
+		div.input-group.form-group.has-success.has-feedback
+			span.input-group-addon @
+			input.input-lg.form-control(type='text', name='confirmEmail', placeholder='Confirm Username')
+			span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")

@@ -2,6 +2,7 @@ var gulp = require('gulp'),
 jshint = require('gulp-jshint'),
 jshint_stylish = require('jshint-stylish'),
 uglifyjs = require('gulp-uglifyjs'),
+jade = require('gulp-jade'),
 copy = require('gulp-copy'),
 sass = require('gulp-sass'),
 livereload = require('gulp-livereload'),
@@ -45,7 +46,14 @@ gulp.task('copy-unchanged-content', function(){
 });
 
 
- 
+ gulp.task('process-jade', function() {
+    return gulp.src(['src/public/**/*.jade'])
+        .pipe(jade({
+            pretty: true
+        }))
+        .pipe(gulp.dest(dest + '/public'));
+});
+
 gulp.task('sass', function () {
   gulp.src('./src/**/*.scss')
     .pipe(sass().on('error', sass.logError))
@@ -91,7 +99,7 @@ gulp.task('mocha',function() {
         });
 });
 
-gulp.task('build',['lint-js','process-js', 'copy-unchanged-content', 'sass'], function(){});
+gulp.task('build',['lint-js','process-js', 'copy-unchanged-content', 'process-jade', 'sass' ], function(){});
 
 gulp.task('watch', function(){
 	livereload.listen();

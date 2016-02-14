@@ -21,6 +21,10 @@ router.get('/signup', function(req, res, next){
 	res.render('signup', {});
 });
 
+router.get('/signup2', function(req, res, next){
+	res.render('signup2', {});
+});
+
 router.post('/signup', function(req, res, next){
 	//res.render('signup', {});
 	//console.log("Req: ", req.body);

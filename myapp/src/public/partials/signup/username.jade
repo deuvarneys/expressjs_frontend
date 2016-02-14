@@ -1,0 +1,50 @@
+div.controllerz
+	div.col-sm-7
+		p Pick a user name the best suits you
+		div.input-group.form-group.has-feedback(ng-class='unInputClass')
+			input.input-lg.form-control(type='text', name='userName', placeholder='Desired Username', ng-model='userName', value='{{userName}}', ng-keyup='unKeyUp(userName)')
+			span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
+			button.btn.btn-lg(ng-click='helpme()', ng-disabled='!inputCheck()') Next ->
+	div.requirements.col-sm-5
+		p Requirements:
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='charLength()')
+			span.glyphicon.glyphicon-remove.error(ng-show='!charLength()')
+			|UserName must be at least 5 characters long
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='noSpaces()')
+			span.glyphicon.glyphicon-remove.error(ng-show='!noSpaces()')
+			|No spaces
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='!unExists')
+			span.glyphicon.glyphicon-remove.error(ng-show='unExists')
+			|UserName should not already exist
+
+//-div.controller
+	div.col-sm-7
+		p What is your preferred email address?
+		div.input-group.form-group.has-success.has-feedback
+			span.input-group-addon @
+			input.input-lg.form-control(type='text', name='email', placeholder='Desired Username')
+			span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+
+		p Let's confirm your email address to make sure everything is correct
+		div.input-group.form-group.has-success.has-feedback
+			span.input-group-addon @
+			input.input-lg.form-control(type='text', name='confirmEmail', placeholder='Confirm Username')
+			span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+
+	div.requirements.col-sm-5
+		p Requirements:
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='charLength()')
+			span.glyphicon.glyphicon-remove.error(ng-show='!charLength()')
+			|UserName must be at least 5 characters long
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='noSpaces()')
+			span.glyphicon.glyphicon-remove.error(ng-show='!noSpaces()')
+			|No spaces
+		p
+			span.glyphicon.glyphicon-ok.success(ng-show='!unExists')
+			span.glyphicon.glyphicon-remove.error(ng-show='unExists')
+			|UserName should not already exist
