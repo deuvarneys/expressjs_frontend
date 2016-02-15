@@ -1,4 +1,5 @@
-var http = require("http"),
+'use strict';
+var http = require('http'),
 requestJson = require('request-json');
 
 var options = {
@@ -55,7 +56,7 @@ var getSignUpContent = function(data, cb){
 	  path: '/account/signup',
 	  method: 'POST',
 	  headers: {
-        "content-type": "application/json",
+        'content-type': 'application/json',
       },
       json : true,
 	  data: data
@@ -63,13 +64,10 @@ var getSignUpContent = function(data, cb){
 
 	var client = requestJson.createClient('http://localhost:8080/');
 
-	console.log("Inside connector");
-
 	client.post(options.path, data, function(err, res, body){
-		console.log(/*"Err: ", err, "Res: ", res,*/ "Body:", body);
+		console.log(/*"Err: ", err, "Res: ", res,*/ 'Body:', body);
 
 		if(cb){
-			console.log("Hitting cb!", body);
 			return cb(body);
 		}
 		

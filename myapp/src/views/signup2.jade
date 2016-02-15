@@ -16,7 +16,7 @@ block content
 							div.input-group.form-group.has-feedback(ng-class='unInputClass')
 								input.input-lg.form-control(type='text', name='userName', placeholder='Desired Username', ng-model='userName', value='{{userName}}', ng-keyup='unKeyUp()')
 								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
-								button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
+								
 					div.requirements.col-sm-5
 						p Requirements:
 						p
@@ -31,26 +31,25 @@ block content
 							span.glyphicon.glyphicon-ok.success(ng-show='!unExists')
 							span.glyphicon.glyphicon-remove.error(ng-show='unExists')
 							|UserName should not already exist
+					div.col-xs-12.buttons
+						button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
 
 				div.section
 					div.col-sm-7
 						div.subSection
 							p What is your preferred email address?
-							div.input-group.form-group.has-success.has-feedback
+							div.input-group.form-group.has-feedback(ng-class='emailStatus')
 								span.input-group-addon @
 								input.input-lg.form-control(type='email', name='email', ng-keyup='emailKeyUp()', ng-model='email', placeholder='Preffered Email')
-								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
+								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true", ng-show='emailCheck()')
 						div.subSection
 							p Let's confirm your email address to make sure everything is correct
 
-							div.input-group.form-group.has-success.has-feedback.row
+							div.input-group.form-group.has-feedback(ng-class='confirmEmailStatus')
 								span.input-group-addon @
-								input.input-lg.form-control(type='email', name='confirmEmail', ng-model='confirmEmail', ng-keyup='confirmEmailKeyUp()', placeholder='Confirm Email')
-								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true")
-							button.btn.btn-lg(ng-click='previous()') <- Previous
-							button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
-
-
+								input.input-lg.form-control(type='email', name='confirmEmail', ng-model='confirmEmail', ng-keyup='confirmEmailCheck()', placeholder='Confirm Email')
+								span.glyphicon.glyphicon-ok.form-control-feedback( aria-hidden="true", ng-show='emailsMatch()')
+							
 					div.requirements.col-sm-5
 						p Requirements:
 						p
@@ -67,38 +66,41 @@ block content
 							span.glyphicon.glyphicon-ok.success(ng-show='emailsMatch()')
 							span.glyphicon.glyphicon-remove.error(ng-show='!emailsMatch()')
 							|Email must match confirmation
+					div.col-xs-12.buttons
+						button.btn.btn-lg(ng-click='previous()') <- Previous
+						button.btn.btn-lg(ng-click='next()', ng-disabled='!(!emailExists && emailsMatch() && emailCorrectFormat())') Next ->
 
 				div.section
 					div.col-sm-7
 						div.subSection
 							p Lets pick a password to secure your account
-							div.input-group.form-group.has-feedback(ng-class='unInputClass')
-								input.input-lg.form-control(type='password', name='password', placeholder='Desired Password', ng-model='password', value='{{passowrd}}')
-								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
+							div.input-group.form-group.has-feedback(ng-class='passInputClass')
+								input.input-lg.form-control(type='password', name='password', placeholder='Desired Password', ng-model='password', value='{{passowrd}}', ng-keyup='passKeyUp()')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='passwordLength() && !passwordSpaces()')
 								
 						div.subSection
 							p Let's make sure that your entered the right password
-							div.input-group.form-group.has-feedback(ng-class='unInputClass')
-								input.input-lg.form-control(type='password', name='confirmPassword', placeholder='Confirm Password', ng-model='confirmPassword', value='{{confirmPassword}}')
-								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='charLength() && noSpaces() && !unExists')
-							button.btn.btn-lg(ng-click='previous()') <- Previous
-							button.btn.btn-lg(ng-click='next()', ng-disabled='!inputCheck()') Next ->
+							div.input-group.form-group.has-feedback(ng-class='confirmPassInputClass')
+								input.input-lg.form-control(type='password', name='confirmPassword', placeholder='Confirm Password', ng-model='confirmPassword', value='{{confirmPassword}}',  ng-keyup='confirmPassKeyUp()')
+								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='passwordLength() && !passwordSpaces() && passwordsMatch()')
+							
 					div.requirements.col-sm-5
 						p Requirements:
 						p
-							span.glyphicon.glyphicon-ok.success(ng-show='emailCorrectFormat()')
-							span.glyphicon.glyphicon-remove.error(ng-show='!emailCorrectFormat()')
-							|Email Must Be In correct format
-							br
-							sub john@doe.com
+							span.glyphicon.glyphicon-ok.success(ng-show='passwordLength()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!passwordLength()')
+							|Password must be at least 5 characters long
 						p
-							span.glyphicon.glyphicon-ok.success(ng-show='!emailExists')
-							span.glyphicon.glyphicon-remove.error(ng-show='emailExists')
-							|Email must not already exist on site
+							span.glyphicon.glyphicon-ok.success(ng-show='!passwordSpaces()')
+							span.glyphicon.glyphicon-remove.error(ng-show='passwordSpaces()')
+							|Password must not contain any spaces
 						p
-							span.glyphicon.glyphicon-ok.success(ng-show='emailsMatch()')
-							span.glyphicon.glyphicon-remove.error(ng-show='!emailsMatch()')
-							|Email must match confirmation
+							span.glyphicon.glyphicon-ok.success(ng-show='passwordsMatch()')
+							span.glyphicon.glyphicon-remove.error(ng-show='!passwordsMatch()')
+							|Password and confirmation must match
+					div.col-xs-12.buttons
+						button.btn.btn-lg(ng-click='previous()') <- Previous
+						button.btn.btn-lg(ng-click='next()', ng-disabled='!passwordInputCheck()') Next ->
 
 				div.section
 					div.col-sm-7
@@ -113,8 +115,7 @@ block content
 							div.input-group.form-group.has-feedback(ng-class='lastNameStatus')
 								input.input-lg.form-control(type='text', name='lastName', placeholder='LastName', ng-model='lastName', value='{{lastName}}', ng-keyup='lastNameKeyUp()')
 								span.glyphicon.glyphicon-ok.form-control-feedback(aria-hidden="true", ng-show='lastNameKeyUp()')
-							button.btn.btn-lg(ng-click='previous()') <- Previous
-							button.btn.btn-lg(ng-click='submit()', ng-disabled='!legalNameCheck()') Sign Up!
+							
 					div.requirements.col-sm-5
 						p Requirements:
 						p
@@ -125,4 +126,13 @@ block content
 							span.glyphicon.glyphicon-ok.success(ng-show='lastNameKeyUp()')
 							span.glyphicon.glyphicon-remove.error(ng-show='!lastNameKeyUp()')
 							|Last name should be present
+					div.col-xs-12.buttons
+						button.btn.btn-lg(ng-click='previous()') <- Previous
+						button.btn.btn-lg(ng-click='submit()', ng-disabled='!legalNameCheck()') Sign Up!
+
+				div.section
+					div.col-xs-12
+						h1.success Success!
+						p| Let's get over to the homepage.
+
 						
